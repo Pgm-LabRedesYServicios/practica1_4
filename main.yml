@@ -1,0 +1,19 @@
+---
+
+- name: Install required packages
+  hosts: all
+  tasks:
+    - name: Install required packages
+      become: yes
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - tmux
+        - git
+        - ca-certificates
+
+- name: Install docker
+  hosts: all
+  roles:
+    - docker
