@@ -12,6 +12,7 @@
         - tmux
         - git
         - ca-certificates
+        - python3-pip
 
 - name: Install docker
   hosts: all
