@@ -1,2 +1,2 @@
 - src: git+https://github.com/Pgm-LabRedesYServicios/docker_role.git
-  version: v1.1.0
+- src: git+https://github.com/Pgm-LabRedesYServicios/simple-deploy-docker-role.git

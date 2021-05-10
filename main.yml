@@ -17,4 +17,18 @@
 - name: Install docker
   hosts: all
   roles:
-    - docker
+    - docker_role
+
+- name: Install asterisk service
+  hosts: all
+  vars:
+    remote_build: True
+    git_repository: https://github.com/Pgm-LabRedesYServicios/practica2_1
+    git_repository_destination: /tmp/asterisk
+    git_repository_extra_path: /
+    git_repository_tag: master
+    service_name: asterisk_docker
+    docker_image_tag: latest
+    docker_command: /usr/bin/docker run --rm -i --name "{{ service_name }}" -v "${PWD}/../logs":/var/log/asterisk -v "${PWD}/configs":/etc/asterisk -p 5060:5060 -p 8088:8088 -p 5038:5038 "labredes/{{ service_name }}"
+  roles:
+    - { role: simple-deploy-docker-role }
