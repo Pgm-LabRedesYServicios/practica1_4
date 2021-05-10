@@ -17,19 +17,19 @@
 
 - name: Install asterisk service
   tags: service_config
+  become: yes
   hosts: all
   vars:
     remote_build: true
     git_repository: https://github.com/Pgm-LabRedesYServicios/practica2_1
-    git_repository_destination: /tmp/asterisk
+    git_repository_destination: /opt/asterisk
     git_repository_tag: master
     service_name: asterisk_docker
     docker_image_tag: latest
     docker_command: >
       /usr/bin/docker run --rm -i
       --name "{{ service_name }}"
-      -v "${PWD}/../logs":/var/log/asterisk
-      -v "${PWD}/configs":/etc/asterisk
+      -v "/opt/asterisk/configs":/etc/asterisk
       -p 5060:5060
       -p 8088:8088
       -p 5038:5038
